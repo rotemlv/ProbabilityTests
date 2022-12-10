@@ -14,7 +14,6 @@ from random import shuffle
 
 # we have n people
 # we accept k people to work for us (the best out of n)
-# given a person on level between 1 and n - k
 # what is the expected value of the number of people accepted?
 # let's say (for example) - do k people get accepted to work on average?
 # our "educated guesses" were:
