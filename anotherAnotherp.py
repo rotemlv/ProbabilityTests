@@ -16,8 +16,8 @@ from random import shuffle
 # we accept k people to work for us (the best out of n)
 # given a person on level between 1 and n - k
 # what is the expected value of the number of people accepted?
-# let's say - do k people get accepted to work on average?
-# out guess was k/n
+# let's say (for example) - do k people get accepted to work on average?
+# our guess was k/n
 # assume:
 N = 2000
 K = 2
