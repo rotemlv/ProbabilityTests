@@ -17,7 +17,9 @@ from random import shuffle
 # given a person on level between 1 and n - k
 # what is the expected value of the number of people accepted?
 # let's say (for example) - do k people get accepted to work on average?
-# our guess was k/n
+# our "educated guesses" were:
+# Expected value: k * log(n / k)
+# for the i-th candidate: probability to be hired = (k / (n - k + 1)) ,as long as i <= n - k
 # assume:
 N = 2000
 K = 2
