@@ -20,8 +20,8 @@ from random import shuffle
 # Expected value: k * log(n / k)
 # for the i-th candidate: probability to be hired = (k / (n - i + 1)) ,as long as i <= n - k
 # assume:
-N = 2000
-K = 2
+N = 12
+K = 4
 print(f"n = {N}, k = {K}")
 # set number of experiments
 NUM_OF_EXP = 10_000
@@ -108,7 +108,7 @@ def main_test_for_hiring_probability_of_each_candidate():
         print(f"\nDone {NUM_OF_EXP} experiments!")
         print(f"Candidate {c} probability to be hired is {successful_experiments / NUM_OF_EXP}")
         print(f"Maxim-Rotem-Dima (k / (n - i + 1),"
-              f" for values of k <= n - k) formula gave us {(K / (N - c + 1)) if N - c + 1 != 0 else 1}")
+              f" for values of k <= n - k) formula gave us {(K / (N - c + 1)) if N - c + 1 > K else 1}")
 
 
 def main_test_for_expected_hired_count():
@@ -124,4 +124,4 @@ def main_test_for_expected_hired_count():
     print(f"{K * log(N / K)=}")
 
 
-main_test_for_expected_hired_count()
+main_test_for_hiring_probability_of_each_candidate()
