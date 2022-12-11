@@ -20,8 +20,8 @@ from random import shuffle
 # Expected value: k * log(n / k)
 # for the i-th candidate: probability to be hired = (k / (n - i + 1)) ,as long as i <= n - k
 # assume:
-N = 12
-K = 4
+N = 15
+K = 7
 print(f"n = {N}, k = {K}")
 # set number of experiments
 NUM_OF_EXP = 10_000
@@ -111,6 +111,22 @@ def main_test_for_hiring_probability_of_each_candidate():
               f" for values of k <= n - k) formula gave us {(K / (N - c + 1)) if N - c + 1 > K else 1}")
 
 
+# an exact formula for the expected value for the number of hires
+def inverse_sum_expected_value(candidates_count, available_spaces):
+    # fixed
+    # sum from 1 to n - k: (1 / (n - (i - 1)))
+    # multiply by k
+    # and add to sum from n - k + 1 to n of 1
+    s = 0
+    for i in range(1, candidates_count - available_spaces + 1):
+        s += (1 / (candidates_count - (i - 1)))
+    # multiply by k
+    s *= available_spaces
+    # add k
+    s += available_spaces
+    return s
+
+
 def main_test_for_expected_hired_count():
     total_candidates_hired = 0
     for _ in range(NUM_OF_EXP):
@@ -121,7 +137,9 @@ def main_test_for_expected_hired_count():
     print(f"\nDone {NUM_OF_EXP} experiments!")
     print(f"On average, hired {total_candidates_hired / NUM_OF_EXP} "
           f"candidates each experiment (estimated Expected value)!")
-    print(f"{K * log(N / K)=}")
+    print(f"The exact sum based on mathematical formula (for expected value) is: {inverse_sum_expected_value(N,K)}")
+    # print(f"The formula we devised at home? {K * log(N / K)=}")
 
 
-main_test_for_hiring_probability_of_each_candidate()
+# main_test_for_hiring_probability_of_each_candidate()
+main_test_for_expected_hired_count()

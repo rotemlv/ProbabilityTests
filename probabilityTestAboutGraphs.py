@@ -90,7 +90,7 @@ def test_count_edges_that_connect_2_groups(edges, group1, group2):
 while M < 10:
     print(f"Performing experiments for case {N=}, {M=}")
     total_connecting_edges = 0
-    for _ in tqdm(range(NUM_OF_EXPERIMENTS)):
+    for _ in range(NUM_OF_EXPERIMENTS):
         E = make_edges_for_graph(N, M)
         v1, v2 = split_graph_randomly(NODES, N)
         total_connecting_edges += \
@@ -99,5 +99,6 @@ while M < 10:
     print(f"Done {NUM_OF_EXPERIMENTS} experiments successfully!")
     print(f"On average, we got {total_connecting_edges / NUM_OF_EXPERIMENTS}"
           f" edges connecting the two groups of each graph")
-    print(f"{maxim_formula(N,M)}\n{dima_formula(N,M)}\n\"The answer\": {(M/2) * (1 + (1/(N-1)))=} (lol)\n")
+    print(f"{maxim_formula(N,M)}\n{dima_formula(N,M)}\n"
+          f"\"The answer\": {(M/2) * (1 + (1/(N-1)))=} (lol), my answer={(M*N)/(2*(N-1))=}\n")
     M += 1
