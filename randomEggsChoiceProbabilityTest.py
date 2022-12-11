@@ -74,10 +74,6 @@ def pull_two(eggs_array):
     return eggs_array[0], eggs_array[1]
 
 
-def experiment_condition_met(param: tuple, condition: Callable):
-    return condition(param)
-
-
 # initialize experiment specific variables (total runs and successful experiments)
 successful_experiments = 0
 valid_experiments = NUM_OF_EXPERIMENTS
@@ -85,15 +81,10 @@ valid_experiments = NUM_OF_EXPERIMENTS
 print(f"Running experiment {NUM_OF_EXPERIMENTS} times for condition {DESCRIPTION_OF_EXPERIMENT_CONDITION}:")
 
 for _ in tqdm(range(NUM_OF_EXPERIMENTS)):
-    if experiment_condition_met(pull_two(get_shuffled_experiment_array()), experiment_condition):
+    if experiment_condition(pull_two(get_shuffled_experiment_array())):
         successful_experiments += 1
 
 print(f"Probability for {DESCRIPTION_OF_EXPERIMENT_CONDITION}:"
       f" {successful_experiments / valid_experiments}")
 
-
-# print(f"Got two red eggs {valid_experiments} times out of "
-#       f"{possible_valid_experiments} -> Probability: "
-#       f"{valid_experiments / possible_valid_experiments}")
-# print(f"Mathematical calculation yielded {2 / 90}")
 
