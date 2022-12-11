@@ -20,8 +20,8 @@ from random import shuffle
 # Expected value: k * log(n / k)
 # for the i-th candidate: probability to be hired = (k / (n - i + 1)) ,as long as i <= n - k
 # assume:
-N = 15
-K = 7
+N = 21
+K = 17
 print(f"n = {N}, k = {K}")
 # set number of experiments
 NUM_OF_EXP = 10_000
@@ -106,9 +106,11 @@ def main_test_for_hiring_probability_of_each_candidate():
             if hire_k_candidates_out_of_n_single_hire_using_set(shuffled_candidates, K, c):
                 successful_experiments += 1
         print(f"\nDone {NUM_OF_EXP} experiments!")
-        print(f"Candidate {c} probability to be hired is {successful_experiments / NUM_OF_EXP}")
+        print(f"Candidate {c} probability to be hired "
+              f"is {successful_experiments / NUM_OF_EXP}")
         print(f"Maxim-Rotem-Dima (k / (n - i + 1),"
-              f" for values of k <= n - k) formula gave us {(K / (N - c + 1)) if N - c + 1 > K else 1}")
+              f" for values of k <= n - k) formula"
+              f" gave us {(K / (N - c + 1)) if N - c + 1 > K else 1}")
 
 
 # an exact formula for the expected value for the number of hires
@@ -133,12 +135,16 @@ def main_test_for_expected_hired_count():
         # create a permutation of candidates array:
         shuffled_candidates = my_candidates.copy()
         shuffle(shuffled_candidates)
-        total_candidates_hired += hire_k_candidates_out_of_n_expected_hired_count(shuffled_candidates, K)
+        total_candidates_hired += \
+            hire_k_candidates_out_of_n_expected_hired_count(
+                shuffled_candidates, K)
     print(f"\nDone {NUM_OF_EXP} experiments!")
     print(f"On average, hired {total_candidates_hired / NUM_OF_EXP} "
           f"candidates each experiment (estimated Expected value)!")
-    print(f"The exact sum based on mathematical formula (for expected value) is: {inverse_sum_expected_value(N,K)}")
-    # print(f"The formula we devised at home? {K * log(N / K)=}")
+    print(f"The exact sum based on mathematical formula "
+          f"(for expected value) is: {inverse_sum_expected_value(N,K)}")
+    print(f"The formula we devised at home (with my fix)"
+          f" for the estimated expected value: {K + K * log(N / K)=}")
 
 
 # main_test_for_hiring_probability_of_each_candidate()
